@@ -2,9 +2,10 @@
 
 namespace App\Exceptions;
 
+use Exception;
 use Illuminate\Http\JsonResponse;
 
-class DDDBaseException
+class DDDBaseException extends Exception
 {
     private array $data;
     private int $statusCode = 422;

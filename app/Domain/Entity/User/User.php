@@ -15,12 +15,7 @@ class User
 
     public function __construct(UserId $id, UserName $name)
     {
-        if (is_null($id)) {
-            throw new DomainException("user_id", "id is required");
-        }
-        if (is_null($name)) {
-            throw new DomainException("name", "name is required");
-        }
+
         $this->id = $id;
         $this->name = $name;
     }
