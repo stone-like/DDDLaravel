@@ -38,4 +38,8 @@ class Article
     {
         return $this->user_id->value();
     }
+    public function isAuthor(UserId $user_id): bool
+    {
+        return $this->user_id->value() === $user_id->value();
+    }
 }

@@ -12,5 +12,4 @@ interface ArticleRepositoryInterface
     public function updateArticle(Article $article): void;
     public function deleteArticle(ArticleId $id): void;
     //allArticleはpagination絡むためCQRSでやったほうがよさそう
-    //findByIdもArticleにはuserIdとLike総数がもともとほしいのでCQRSかも
 }
