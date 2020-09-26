@@ -2,19 +2,22 @@
 
 namespace App\Domain\Infrastructure\Model;
 
-use App\Domain\Entity\User\User as UserEntity;
 use App\Domain\Entity\User\UserId;
 use App\Domain\Entity\User\UserName;
-use Illuminate\Notifications\Notifiable;
-use App\Domain\Repository\Model\Domainable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Domain\Entity\User\UserEmail;
+use App\Domain\Entity\User\UserPassword;
+use App\Domain\Entity\User\User as UserEntity;
+use App\Domain\Infrastructure\Model\Domainable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable implements Domainable
+class User extends Model implements Domainable
 {
-    use HasFactory, Notifiable;
+    use HasFactory;
 
+    public $timestamps = false; //ここでこのtableではtimestampを使わないことを明示、さもなければ生成時にupdated_atがないみたいなエラーが出る(migarteで削除していても)
+    protected $keytype = "string";
+    public  $incrementing = false;
     /**
      * The attributes that are mass assignable.
      *
@@ -27,30 +30,14 @@ class User extends Authenticatable implements Domainable
         'password',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
 
     public function toDomain()
     {
-        return new UserEntity(
+        return UserEntity::New(
             new UserId($this->id),
             new UserName($this->name),
+            new UserEmail($this->email),
+            UserPassword::FromRepository($this->password)
         );
     }
 }

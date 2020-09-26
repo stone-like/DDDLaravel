@@ -5,8 +5,8 @@ namespace App\Domain\Infrastructure\Repository\Article;
 use App\Domain\Entity\User\UserId;
 use App\Exceptions\RepositoryException;
 use App\Domain\Entity\Article\ArticleId;
-use App\Domain\Repository\Model\Article;
 use App\Domain\Entity\Article\ArticleTitle;
+use App\Domain\Infrastructure\Model\Article;
 use App\Domain\Entity\Article\ArticleContent;
 use App\Domain\Entity\Article\Article as ArticleEntity;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -24,36 +24,33 @@ class EloquentArticleRepository
     {
         //ここで例外だしたいけど、Eloquentだろうがなんだろうが処理を共通化させたいので、nullを返すことで共通化させる
         //それでusecaseでnullだったら例外投げればいい
-        $article = $this->eloquent->where("id", $id->value())->get();
-        if ($article->isEmpty()) {
-            return null;
-        }
+        $article = $this->eloquent->where("id", $id->value())->first();
 
-        return $article->toDomain();
+        return optional($article)->toDomain();
     }
-    public function createArticle(ArticleEntity $article): void
+    public function createArticle(ArticleEntity $articleEntity): void
     {
         (new Article([
-            "id" => $article->Id(),
-            "title" => $article->Title(),
-            "content" => $article->Content(),
-            "user_id" => $article->AuthorId()
+            "id" => $articleEntity->Id(),
+            "title" => $articleEntity->Title(),
+            "content" => $articleEntity->Content(),
+            "user_id" => $articleEntity->AuthorId()
         ]))->save();
     }
-    public function updateArticle(ArticleEntity $article): void
+    public function updateArticle(ArticleEntity $articleEntity): void
     {
         //useCaseでこのIdの存在性は確認済み
-        $article = $this->eloquent->where("id", $article->Id())->get();
+        $article = $this->eloquent->where("id", $articleEntity->Id())->first();
         $article->update([
-            "title" => $article->Title(),
-            "content" => $article->Content(),
-            "user_id" => $article->AuthorId()
+            "title" => $articleEntity->Title(),
+            "content" => $articleEntity->Content(),
+            "user_id" => $articleEntity->AuthorId()
         ]);
     }
     public function deleteArticle(ArticleId $id): void
     {
         //useCaseでこのIdの存在性は確認済み
-        $article = $this->eloquent->where("id", $id)->get();
+        $article = $this->eloquent->where("id", $id->value())->first();
         $article->delete();
     }
 }

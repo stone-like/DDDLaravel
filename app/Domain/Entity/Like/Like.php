@@ -20,14 +20,14 @@ class Like
     {
     }
 
-    //Entity全部Factoryパターンでそろえた方がいいかも
-    public static function new(Article $article, UserId $user_id, LikeId $id)
+
+    public static function New(Article $article, UserId $user_id, LikeId $id)
     {
         if ($article->isAuthor($user_id)) {
             throw new DomainException("user_id", "this user is author in this article");
         }
         $instance = new self();
-        $instance->article_id = $article->Id();
+        $instance->article_id = new ArticleId($article->Id());
         $instance->user_id = $user_id;
         $instance->id = $id;
 
@@ -35,7 +35,7 @@ class Like
     }
 
 
-    public static function fromRepository(ArticleId $articleId, UserId $userId, LikeId $Id)
+    public static function FromRepository(ArticleId $articleId, UserId $userId, LikeId $Id)
     {
         $instance = new self();
         $instance->article_id = $articleId;

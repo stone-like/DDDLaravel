@@ -14,12 +14,18 @@ class Article
     private ArticleContent $content;
     private UserId $user_id;
 
-    public function __construct(ArticleId $id, ArticleTitle $title, ArticleContent $content, UserId $user_id)
+    private function __construct()
     {
-        $this->id = $id;
-        $this->title = $title;
-        $this->content = $content;
-        $this->user_id = $user_id;
+    }
+
+    public static function New(ArticleId $id, ArticleTitle $title, ArticleContent $content, UserId $user_id)
+    {
+        $instance = new self();
+        $instance->id = $id;
+        $instance->title = $title;
+        $instance->content = $content;
+        $instance->user_id = $user_id;
+        return $instance;
     }
 
     public function Id(): string

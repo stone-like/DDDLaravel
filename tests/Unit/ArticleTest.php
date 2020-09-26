@@ -14,7 +14,7 @@ class ArticleTest extends TestCase
     /** @test */
     public function can_create_article()
     {
-        $article = new Article(new ArticleId("aaa"), new ArticleTitle("bbb"), new ArticleContent("ccc"), new UserId("xxx"));
+        $article = Article::New(new ArticleId("aaa"), new ArticleTitle("bbb"), new ArticleContent("ccc"), new UserId("xxx"));
         $this->assertEquals("aaa", $article->Id());
         $this->assertEquals("bbb", $article->Title());
         $this->assertEquals("ccc", $article->Content());
