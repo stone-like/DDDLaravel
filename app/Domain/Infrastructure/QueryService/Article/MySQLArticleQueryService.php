@@ -18,7 +18,7 @@ class MySQLArticleQueryService
             ->groupBy("articles.id")
             ->get();
         return  $articleList->map(function ($article) {
-            return new ArticleDTO($article->article_id, $article->title, $article->content, $article->likeCount, $article->user_id, $article->username);
+            return new ArticleDTO($article->article_id, $article->title, $article->content, $article->likeCount, $article->username, $article->user_id);
         });
     }
 }

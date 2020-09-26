@@ -2,6 +2,7 @@
 
 namespace Tests;
 
+use App\Domain\Infrastructure\QueryService\Article\MySQLArticleQueryService;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use App\Domain\Infrastructure\Repository\Like\EloquentLikeRepository;
@@ -18,6 +19,7 @@ abstract class TestCase extends BaseTestCase
     protected $likeRepo;
     protected $userRepo;
     protected $articleRepo;
+    protected $articleQueryService;
 
     public function setUp(): void
     {
@@ -26,5 +28,6 @@ abstract class TestCase extends BaseTestCase
         $this->likeRepo = $this->app->make(EloquentLikeRepository::class);
         $this->userRepo = $this->app->make(EloquentUserRepository::class);
         $this->articleRepo = $this->app->make(EloquentArticleRepository::class);
+        $this->articleQueryService = $this->app->make(MySQLArticleQueryService::class);
     }
 }
