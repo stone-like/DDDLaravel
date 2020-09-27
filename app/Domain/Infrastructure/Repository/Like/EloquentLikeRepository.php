@@ -17,15 +17,15 @@ class EloquentLikeRepository
     }
 
     //Entity通さない方がいいかも,Readであるfindとcreate時のArticleのauthorとuserを比較する制約がかみ合わない←コンストラクタを二つ作ることで解決
-    public function findById(LikeId $id): LikeEntity
+    public function findById(LikeId $id): ?LikeEntity
     {
         $like = $this->eloquent->where("id", $id->value())->first();
         return optional($like)->toDomain();
     }
 
-    public function findByUserIdAndArticleId(UserId $user_id, ArticleId $article_id): LikeEntity
+    public function findByUserIdAndArticleId(UserId $user_id, ArticleId $article_id): ?LikeEntity
     {
-        $like = $this->eloquent->where("user_id", $user_id)->where("article_id", $article_id)->first();
+        $like = $this->eloquent->where("user_id", $user_id->value())->where("article_id", $article_id->value())->first();
         return optional($like)->toDomain();
     }
 

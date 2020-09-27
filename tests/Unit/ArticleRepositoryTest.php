@@ -69,4 +69,24 @@ class ArticleRepositoryTest extends TestCase
         $this->articleRepo->deleteArticle(new ArticleId($article_id));
         $this->assertDatabaseMissing("articles", ["id" => $article_id, "title" => "test", "content" => "test", "user_id" => $user_id]);
     }
+
+    /** @test */
+    public function can_find_article()
+    {
+
+        $user_id = Uuid::uuid4()->toString();
+        $user = User::New(new UserId($user_id), new UserName("test"), new UserEmail("test@email.com"), UserPassword::New("password", "password"));
+        $this->userRepo->createUser($user);
+
+        $article_id = Uuid::uuid4()->toString();
+        $article = Article::New(new ArticleId($article_id), new ArticleTitle("test"), new ArticleContent("test"), new UserId($user_id));
+        $this->articleRepo->createArticle($article);
+
+
+        $article = $this->articleRepo->findById(new ArticleId($article_id));
+        $this->assertEquals($article_id, $article->Id());
+        $this->assertEquals("test", $article->Title());
+        $this->assertEquals("test", $article->Content());
+        $this->assertEquals($user_id, $article->AuthorId());
+    }
 }

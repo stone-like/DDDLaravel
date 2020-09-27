@@ -5,17 +5,23 @@ namespace App\Domain\Infrastructure\Repository\User;
 use App\Domain\Entity\User\UserId;
 use App\Domain\Infrastructure\Model\User;
 use App\Domain\Entity\User\User as UserEntity;
+use App\Domain\Entity\User\UserEmail;
 
-class EloquentUserRepository
+class EloquentUserRepository implements UserRepositoryInterface
 {
     private User $eloquent;
     public function __construct(User $eloquent)
     {
         $this->eloquent = $eloquent;
     }
-    public function findById(UserId $id): UserEntity
+    public function findById(UserId $id): ?UserEntity
     {
         $user = $this->eloquent->where("id", $id->value())->first(); //firstの返り値はあるときはModel、ないときはnull
+        return optional($user)->toDomain();
+    }
+    public function findByEmail(UserEmail $email): ?UserEntity
+    {
+        $user = $this->eloquent->where("email", $email->value())->first(); //firstの返り値はあるときはModel、ないときはnull
         return optional($user)->toDomain();
     }
     public function createUser(UserEntity $userEntity): void

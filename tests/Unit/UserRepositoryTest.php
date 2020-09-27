@@ -47,4 +47,43 @@ class UserRepositoryTest extends TestCase
         $this->userRepo->deleteUser(new UserId($id));
         $this->assertDatabaseMissing("users", ["id" => $id, "name" => "test", "email" => "test@email.com"]);
     }
+
+    /** @test */
+    public function can_find_user()
+    {
+        $id = Uuid::uuid4()->toString();
+        $user = User::New(new UserId($id), new UserName("test"), new UserEmail("test@email.com"), UserPassword::New("password", "password"));
+        $this->userRepo->createUser($user);
+
+        $user = $this->userRepo->findById(new UserId($id));
+        $this->assertEquals("test", $user->Name());
+        $this->assertEquals("test@email.com", $user->Email());
+        $this->assertEquals($id, $user->Id());
+        $this->assertTrue(password_verify("password", $user->Password()));
+    }
+
+    /** @test */
+    public function can_find_user_by_email()
+    {
+        $id = Uuid::uuid4()->toString();
+        $user = User::New(new UserId($id), new UserName("test"), new UserEmail("test@email.com"), UserPassword::New("password", "password"));
+        $this->userRepo->createUser($user);
+
+        $user = $this->userRepo->findByEmail(new UserEmail("test@email.com"));
+        $this->assertEquals("test", $user->Name());
+        $this->assertEquals("test@email.com", $user->Email());
+        $this->assertEquals($id, $user->Id());
+        $this->assertTrue(password_verify("password", $user->Password()));
+    }
+
+    /** @test */
+    public function return_null_if_can_not_find()
+    {
+        $id = Uuid::uuid4()->toString();
+        $user = User::New(new UserId($id), new UserName("test"), new UserEmail("test@email.com"), UserPassword::New("password", "password"));
+        $this->userRepo->createUser($user);
+
+        $user = $this->userRepo->findById(new UserId("dummyId"));
+        $this->assertEquals(null, $user);
+    }
 }

@@ -20,7 +20,7 @@ class EloquentArticleRepository
     }
 
     //ここでexistingを確認出来てダメだったら例外throwすればいいかな？
-    public function findById(ArticleId $id): ArticleEntity
+    public function findById(ArticleId $id): ?ArticleEntity
     {
         //ここで例外だしたいけど、Eloquentだろうがなんだろうが処理を共通化させたいので、nullを返すことで共通化させる
         //それでusecaseでnullだったら例外投げればいい

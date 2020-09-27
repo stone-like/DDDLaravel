@@ -92,4 +92,55 @@ class LikeRepositoryTest extends TestCase
         $this->assertEquals($another_user_id, $likeEntity->UserId());
         $this->assertEquals($article_id, $likeEntity->ArticleId());
     }
+
+    /** @test */
+    public function return_null_if_can_not_find_like()
+    {
+        $user_id = Uuid::uuid4()->toString();
+        $user = User::New(new UserId($user_id), new UserName("test"), new UserEmail("test@email.com"), UserPassword::New("password", "password"));
+        $this->userRepo->createUser($user);
+
+        $another_user_id = Uuid::uuid4()->toString();
+        $anotherUser = User::New(new UserId($another_user_id), new UserName("test"), new UserEmail("another@email.com"), UserPassword::New("password", "password"));
+        $this->userRepo->createUser($anotherUser);
+
+        $article_id = Uuid::uuid4()->toString();
+        $article = Article::New(new ArticleId($article_id), new ArticleTitle("test"), new ArticleContent("test"), new UserId($user_id));
+        $this->articleRepo->createArticle($article);
+
+        $like_id = Uuid::uuid4()->toString();
+        $like = Like::New($article, new UserId($another_user_id), new LikeId($like_id));
+        $this->likeRepo->createLike($like);
+
+        $likeEntity = $this->likeRepo->findById(new LikeId("dummyuuid"));
+
+
+        $this->assertEquals(null, $likeEntity);
+    }
+
+    /** @test */
+    public function can_find_like_by_user_id_and_article_id()
+    {
+        $user_id = Uuid::uuid4()->toString();
+        $user = User::New(new UserId($user_id), new UserName("test"), new UserEmail("test@email.com"), UserPassword::New("password", "password"));
+        $this->userRepo->createUser($user);
+
+        $another_user_id = Uuid::uuid4()->toString();
+        $anotherUser = User::New(new UserId($another_user_id), new UserName("test"), new UserEmail("another@email.com"), UserPassword::New("password", "password"));
+        $this->userRepo->createUser($anotherUser);
+
+        $article_id = Uuid::uuid4()->toString();
+        $article = Article::New(new ArticleId($article_id), new ArticleTitle("test"), new ArticleContent("test"), new UserId($user_id));
+        $this->articleRepo->createArticle($article);
+
+        $like_id = Uuid::uuid4()->toString();
+        $like = Like::New($article, new UserId($another_user_id), new LikeId($like_id));
+        $this->likeRepo->createLike($like);
+
+        $likeEntity = $this->likeRepo->findByUserIdAndArticleId(new UserId($another_user_id), new ArticleId($article_id));
+
+
+        $this->assertEquals($another_user_id, $likeEntity->UserId());
+        $this->assertEquals($article_id, $likeEntity->ArticleId());
+    }
 }

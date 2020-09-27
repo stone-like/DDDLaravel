@@ -7,7 +7,7 @@ use App\Domain\Entity\Article\ArticleId;
 
 interface ArticleRepositoryInterface
 {
-    public function findById(ArticleId $id): Article;
+    public function findById(ArticleId $id): ?Article;
     public function createArticle(Article $article): void;
     public function updateArticle(Article $article): void;
     public function deleteArticle(ArticleId $id): void;
