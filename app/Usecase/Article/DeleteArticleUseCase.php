@@ -5,7 +5,7 @@ namespace App\Usecase\Article;
 use App\Exceptions\UseCaseException;
 use App\Domain\Entity\Article\ArticleId;
 use App\Domain\Service\Article\ArticleService;
-use App\Domain\Infrastructure\Repository\Article\ArticleRepositoryInterface;
+use App\Infrastructure\Repository\Article\ArticleRepositoryInterface;
 
 class DeleteArticleUseCase
 {

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Domain\Infrastructure\Model;
+namespace App\Infrastructure\Model;
 
 use App\Domain\Entity\User\UserId;
 use App\Domain\Entity\User\UserName;
 use App\Domain\Entity\User\UserEmail;
 use App\Domain\Entity\User\UserPassword;
 use App\Domain\Entity\User\User as UserEntity;
-use App\Domain\Infrastructure\Model\Domainable;
+use App\Infrastructure\Model\Domainable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Infrastructure\QueryService\Article;
+namespace App\Infrastructure\QueryService\Article;
 
 use Illuminate\Support\Collection;
 

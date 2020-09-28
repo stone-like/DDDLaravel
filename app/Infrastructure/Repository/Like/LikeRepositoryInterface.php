@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Infrastructure\Repository\Like;
+namespace App\Infrastructure\Repository\Like;
 
 use App\Domain\Entity\Like\Like as LikeEntity;
 use App\Domain\Entity\Like\LikeId;

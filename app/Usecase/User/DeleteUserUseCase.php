@@ -3,7 +3,7 @@
 namespace App\Usecase\User;
 
 use App\Domain\Entity\User\UserId;
-use App\Domain\Infrastructure\Repository\User\UserRepositoryInterface;
+use App\Infrastructure\Repository\User\UserRepositoryInterface;
 use App\Domain\Service\User\UserService;
 use App\Exceptions\UseCaseException;
 

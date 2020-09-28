@@ -10,7 +10,7 @@ use App\Domain\Service\User\UserService;
 use App\Domain\Entity\Article\ArticleTitle;
 use App\Domain\Entity\Article\ArticleContent;
 use App\Domain\Service\Article\ArticleService;
-use App\Domain\Infrastructure\Repository\Article\ArticleRepositoryInterface;
+use App\Infrastructure\Repository\Article\ArticleRepositoryInterface;
 
 class UpdateArticleUseCase
 {

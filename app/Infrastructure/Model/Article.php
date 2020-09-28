@@ -1,14 +1,14 @@
 <?php
 
 
-namespace App\Domain\Infrastructure\Model;
+namespace App\Infrastructure\Model;
 
 use App\Domain\Entity\User\UserId;
 use Illuminate\Database\Eloquent\Model;
 use App\Domain\Entity\Article\ArticleId;
 use App\Domain\Entity\Article\ArticleTitle;
 use App\Domain\Entity\Article\ArticleContent;
-use App\Domain\Infrastructure\Model\Domainable;
+use App\Infrastructure\Model\Domainable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Domain\Entity\Article\Article as ArticleEntity;
 

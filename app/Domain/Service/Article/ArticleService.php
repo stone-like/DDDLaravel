@@ -3,7 +3,7 @@
 namespace App\Domain\Service\Article;
 
 use App\Domain\Entity\Article\ArticleId;
-use App\Domain\Infrastructure\Repository\Article\ArticleRepositoryInterface;
+use App\Infrastructure\Repository\Article\ArticleRepositoryInterface;
 
 class ArticleService
 {

@@ -3,7 +3,7 @@
 namespace App\Usecase\Article;
 
 use Illuminate\Support\Collection;
-use App\Domain\Infrastructure\QueryService\Article\ArticleQueryServiceInterface;
+use App\Infrastructure\QueryService\Article\ArticleQueryServiceInterface;
 
 class GetAllArticleUseCase
 {

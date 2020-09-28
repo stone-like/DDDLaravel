@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Infrastructure\Repository\User;
+namespace App\Infrastructure\Repository\User;
 
 use App\Domain\Entity\User\User as UserEntity;
 use App\Domain\Entity\User\UserEmail;

@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Domain\Infrastructure\Repository\Article;
+namespace App\Infrastructure\Repository\Article;
 
 use App\Domain\Entity\User\UserId;
 use App\Exceptions\RepositoryException;
 use App\Domain\Entity\Article\ArticleId;
 use App\Domain\Entity\Article\ArticleTitle;
-use App\Domain\Infrastructure\Model\Article;
+use App\Infrastructure\Model\Article;
 use App\Domain\Entity\Article\ArticleContent;
 use App\Domain\Entity\Article\Article as ArticleEntity;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class EloquentArticleRepository
+class EloquentArticleRepository implements ArticleRepositoryInterface
 {
     private Article $eloquent;
     public function __construct(Article $eloquent)

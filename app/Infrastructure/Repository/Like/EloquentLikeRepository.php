@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Domain\Infrastructure\Repository\Like;
+namespace App\Infrastructure\Repository\Like;
 
 use App\Domain\Entity\Like\LikeId;
 use App\Domain\Entity\User\UserId;
 use App\Domain\Entity\Article\ArticleId;
-use App\Domain\Infrastructure\Model\Like;
+use App\Infrastructure\Model\Like;
 use App\Domain\Entity\Like\Like as LikeEntity;
 
 class EloquentLikeRepository

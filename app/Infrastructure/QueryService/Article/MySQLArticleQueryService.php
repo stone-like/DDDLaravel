@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Domain\Infrastructure\QueryService\Article;
+namespace App\Infrastructure\QueryService\Article;
 
-use App\Domain\Infrastructure\QueryService\Article\DTO\ArticleDTO;
+use App\Infrastructure\QueryService\Article\DTO\ArticleDTO;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
 
-class MySQLArticleQueryService
+class MySQLArticleQueryService implements ArticleQueryServiceInterface
 {
     public function getAllList(): Collection
     {

@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Domain\Infrastructure\QueryService\Article\ArticleQueryServiceInterface;
-use App\Domain\Infrastructure\QueryService\Article\MySQLArticleQueryService;
+use App\Infrastructure\QueryService\Article\ArticleQueryServiceInterface;
+use App\Infrastructure\QueryService\Article\MySQLArticleQueryService;
 
 class QueryServiceProvider extends ServiceProvider
 {

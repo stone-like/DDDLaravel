@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Infrastructure\Model;
+namespace App\Infrastructure\Model;
 
 interface Domainable
 {

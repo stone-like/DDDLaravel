@@ -8,7 +8,7 @@ use App\Domain\Entity\User\UserName;
 use App\Exceptions\UseCaseException;
 use App\Domain\Entity\User\UserEmail;
 use App\Domain\Entity\User\UserPassword;
-use App\Domain\Infrastructure\Repository\User\UserRepositoryInterface;
+use App\Infrastructure\Repository\User\UserRepositoryInterface;
 use App\Domain\Service\User\UserService;
 
 class UpdateUserUseCase

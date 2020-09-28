@@ -2,18 +2,23 @@
 
 namespace Tests;
 
-use App\Domain\Infrastructure\QueryService\Article\MySQLArticleQueryService;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
-use App\Domain\Infrastructure\Repository\Like\EloquentLikeRepository;
-use App\Domain\Infrastructure\Repository\User\EloquentUserRepository;
-use App\Domain\Infrastructure\Repository\Like\LikeRepositoryInterface;
-use App\Domain\Infrastructure\Repository\User\UserRepositoryInterface;
-use App\Domain\Infrastructure\Repository\Article\EloquentArticleRepository;
 use App\Usecase\User\CreateUserUseCase;
 use App\Usecase\User\DeleteUserUseCase;
-use App\Usecase\User\FindUserByIdUseCase;
 use App\Usecase\User\UpdateUserUseCase;
+use App\Usecase\User\FindUserByIdUseCase;
+use App\Usecase\Article\CreateArticleUseCase;
+use App\Usecase\Article\DeleteArticleUseCase;
+use App\Usecase\Article\GetAllArticleUseCase;
+use App\Usecase\Article\UpdateArticleUseCase;
+use App\Usecase\Article\FindArticleByIdUseCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use App\Infrastructure\Repository\Like\EloquentLikeRepository;
+use App\Infrastructure\Repository\User\EloquentUserRepository;
+use App\Infrastructure\Repository\Like\LikeRepositoryInterface;
+use App\Infrastructure\Repository\User\UserRepositoryInterface;
+use App\Infrastructure\Repository\Article\EloquentArticleRepository;
+use App\Infrastructure\QueryService\Article\MySQLArticleQueryService;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -50,5 +55,11 @@ abstract class TestCase extends BaseTestCase
         $this->deleteUserUseCase = $this->app->make(DeleteUserUseCase::class);
         $this->updateUserUseCase = $this->app->make(UpdateUserUseCase::class);
         $this->findUserByIdUseCase = $this->app->make(FindUserByIdUseCase::class);
+
+        $this->createArticleUseCase = $this->app->make(CreateArticleUseCase::class);
+        $this->updateArticleUseCase = $this->app->make(UpdateArticleUseCase::class);
+        $this->deleteArticleUseCase = $this->app->make(DeleteArticleUseCase::class);
+        $this->findArticleByIdUseCase = $this->app->make(FindArticleByIdUseCase::class);
+        $this->getAllArticleUseCase = $this->app->make(GetAllArticleUseCase::class);
     }
 }

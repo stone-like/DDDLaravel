@@ -3,12 +3,12 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Domain\Infrastructure\Repository\Like\EloquentLikeRepository;
-use App\Domain\Infrastructure\Repository\User\EloquentUserRepository;
-use App\Domain\Infrastructure\Repository\Like\LikeRepositoryInterface;
-use App\Domain\Infrastructure\Repository\User\UserRepositoryInterface;
-use App\Domain\Infrastructure\Repository\Article\EloquentArticleRepository;
-use App\Domain\Infrastructure\Repository\Article\ArticleRepositoryInterface;
+use App\Infrastructure\Repository\Like\EloquentLikeRepository;
+use App\Infrastructure\Repository\User\EloquentUserRepository;
+use App\Infrastructure\Repository\Like\LikeRepositoryInterface;
+use App\Infrastructure\Repository\User\UserRepositoryInterface;
+use App\Infrastructure\Repository\Article\EloquentArticleRepository;
+use App\Infrastructure\Repository\Article\ArticleRepositoryInterface;
 
 class RepositoryProvider extends ServiceProvider
 {

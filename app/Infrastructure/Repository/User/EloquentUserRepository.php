@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Domain\Infrastructure\Repository\User;
+namespace App\Infrastructure\Repository\User;
 
 use App\Domain\Entity\User\UserId;
-use App\Domain\Infrastructure\Model\User;
-use App\Domain\Entity\User\User as UserEntity;
+use App\Infrastructure\Model\User;
 use App\Domain\Entity\User\UserEmail;
+use App\Domain\Entity\User\User as UserEntity;
+use App\Infrastructure\Repository\User\UserRepositoryInterface;
 
 class EloquentUserRepository implements UserRepositoryInterface
 {

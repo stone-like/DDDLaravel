@@ -10,8 +10,8 @@ use App\Domain\Entity\Article\ArticleId;
 use App\Domain\Service\User\UserService;
 use App\Domain\Entity\Article\ArticleTitle;
 use App\Domain\Entity\Article\ArticleContent;
-use App\Domain\Infrastructure\Repository\User\UserRepositoryInterface;
-use App\Domain\Infrastructure\Repository\Article\ArticleRepositoryInterface;
+use App\Infrastructure\Repository\User\UserRepositoryInterface;
+use App\Infrastructure\Repository\Article\ArticleRepositoryInterface;
 
 class CreateArticleUseCase
 {

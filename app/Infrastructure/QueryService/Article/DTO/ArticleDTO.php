@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Infrastructure\QueryService\Article\DTO;
+namespace App\Infrastructure\QueryService\Article\DTO;
 
 
 

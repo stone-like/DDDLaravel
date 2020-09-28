@@ -7,7 +7,7 @@ use App\Domain\Entity\User\UserId;
 use App\Domain\Entity\User\UserName;
 use App\Domain\Entity\User\UserEmail;
 use App\Domain\Entity\User\UserPassword;
-use App\Domain\Infrastructure\Repository\User\UserRepositoryInterface;
+use App\Infrastructure\Repository\User\UserRepositoryInterface;
 use App\Domain\Service\User\UserService;
 use App\Exceptions\UseCaseException;
 use Ramsey\Uuid\Uuid;
