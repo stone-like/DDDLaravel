@@ -94,19 +94,30 @@ class ArticleUseCaseTest extends TestCase
         $this->assertEquals($user_id, $article->AuthorId());
     }
 
-    // /** @test */
-    // public function can_get_all_article()
-    // {
-    //     $user_id = Uuid::uuid4()->toString();
-    //     $this->createUserUseCase->execute($user_id, "test", "test@email.com", "password", "password");
+    /** @test */
+    public function can_get_all_article()
+    {
+        $user_id = Uuid::uuid4()->toString();
+        $this->createUserUseCase->execute($user_id, "test", "test@email.com", "password", "password");
 
-    //     $article_id = Uuid::uuid4()->toString();
-    //     $this->createArticleUseCase->execute($article_id, "test", "test", $user_id);
-    //     $another_article_id = Uuid::uuid4()->toString();
-    //     $this->createArticleUseCase->execute($another_article_id, "test2", "test2", $user_id);
+        $article_id = Uuid::uuid4()->toString();
+        $this->createArticleUseCase->execute($article_id, "test", "test", $user_id);
+        $another_article_id = Uuid::uuid4()->toString();
+        $this->createArticleUseCase->execute($another_article_id, "test2", "test2", $user_id);
 
-    //     $article = $this->getAllArticleUseCase->execute();
+        $another_user_id = Uuid::uuid4()->toString();
+        $this->createUserUseCase->execute($another_user_id, "test2", "test2@email.com", "password", "password");
+
+        $like_id = Uuid::uuid4()->toString();
+        $this->createLikeUseCase->execute($like_id, $article_id, "test", "test", $user_id, $another_user_id);
 
 
-    // }
+        $articleList = $this->getAllArticleUseCase->execute();
+        dump($articleList);
+        $this->assertEquals($articleList[0]->LikeCount(), 0);
+        $this->assertEquals($articleList[0]->Title(), "test2");
+
+        $this->assertEquals($articleList[1]->LikeCount(), 1);
+        $this->assertEquals($articleList[1]->Title(), "test");
+    }
 }

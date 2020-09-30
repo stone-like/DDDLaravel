@@ -8,7 +8,7 @@ use App\Domain\Entity\Article\ArticleId;
 use App\Infrastructure\Model\Like;
 use App\Domain\Entity\Like\Like as LikeEntity;
 
-class EloquentLikeRepository
+class EloquentLikeRepository implements LikeRepositoryInterface
 {
     private Like $eloquent;
     public function __construct(Like $eloquent)
