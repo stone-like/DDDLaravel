@@ -10,7 +10,7 @@ interface UserRepositoryInterface
 {
     public function findById(UserId $id): ?UserEntity;
     public function findByEmail(UserEmail $email): ?UserEntity;
-    public function createUser(UserEntity $user): void;
+    public function createUser(UserEntity $user): UserEntity;
     public function updateUser(UserEntity $user): void;
     public function deleteUser(UserId $id): void;
 }

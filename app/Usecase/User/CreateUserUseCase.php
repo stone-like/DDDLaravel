@@ -22,7 +22,7 @@ class CreateUserUseCase
         $this->userService = $userService;
     }
 
-    public function execute(string $user_id = null, string $userName, string $email, string $password, string $password_confirmation): void
+    public function execute(string $user_id = null, string $userName, string $email, string $password, string $password_confirmation): User
     {
         $uuid = $user_id ?? Uuid::uuid4()->toString();
         //emailの重複禁止のValidation
@@ -30,10 +30,11 @@ class CreateUserUseCase
         //ここでEntityを作り、EntityOrDTOがRepository,QueryServiceから返ってくる
         $user = User::New(new UserId($uuid), new UserName($userName), new UserEmail($email), UserPassword::New($password, $password_confirmation));
 
+
         if ($this->userService->isEmailDuplicated($user)) {
             throw new UseCaseException("email", "this email is duplicated");
         }
 
-        $this->userRepo->createUser($user);
+        return $this->userRepo->createUser($user);
     }
 }

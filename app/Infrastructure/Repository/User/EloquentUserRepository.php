@@ -25,14 +25,17 @@ class EloquentUserRepository implements UserRepositoryInterface
         $user = $this->eloquent->where("email", $email->value())->first(); //firstの返り値はあるときはModel、ないときはnull
         return optional($user)->toDomain();
     }
-    public function createUser(UserEntity $userEntity): void
+    public function createUser(UserEntity $userEntity): UserEntity
     {
-        (new User([
+
+        $user =   User::create([
             "id" => $userEntity->Id(),
             "name" => $userEntity->Name(),
             "email" => $userEntity->Email(),
             "password" => $userEntity->Password()
-        ]))->save();
+        ]);
+
+        return $user->toDomain();
     }
     public function updateUser(UserEntity $userEntity): void
     {

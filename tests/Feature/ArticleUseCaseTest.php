@@ -113,7 +113,6 @@ class ArticleUseCaseTest extends TestCase
 
 
         $articleList = $this->getAllArticleUseCase->execute();
-        dump($articleList);
         $this->assertEquals($articleList[0]->LikeCount(), 0);
         $this->assertEquals($articleList[0]->Title(), "test2");
 
